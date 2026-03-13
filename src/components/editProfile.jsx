@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { addUser } from "../utils/userSlice"
+import { BASE_URL } from "../utils/constants"
 export default function EditProfile({user}){
 
   const [firstName,setFirstName] = useState(user?.firstName || "")
@@ -16,7 +17,7 @@ export default function EditProfile({user}){
 async function handleEdit(){
   try{
     const res = await axios.patch(
-      "http://localhost:65400/profile/edit",
+      BASE_URL+"/profile/edit",
       data,
       { withCredentials: true }
     );

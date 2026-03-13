@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { addUser } from "../utils/userSlice";
 import { useEffect } from "react";
+import { BASE_URL } from "../utils/constants";
 export default function Body() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export default function Body() {
     if (userData?._id) return;
 
     try {
-      const res = await axios.get("http://localhost:65400/profile/view", {
+      const res = await axios.get(BASE_URL+"/profile/view", {
         withCredentials: true,
       });
 

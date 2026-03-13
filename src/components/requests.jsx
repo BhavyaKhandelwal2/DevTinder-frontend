@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addRequests } from "../utils/requestSlice";
 import { useEffect, useState } from "react";
 import { removeRequest } from "../utils/requestSlice";
+import { BASE_URL } from "../utils/constants";
 
 export default function Requests() {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ export default function Requests() {
   const requests = useSelector((store) => store.requests);
   async function fetchRequests() {
     try {
-      const res = await axios.get("http://localhost:65400/user/requests", {
+      const res = await axios.get(BASE_URL+"/user/requests", {
         withCredentials: true,
       });
 
@@ -22,7 +23,7 @@ export default function Requests() {
   async function acceptRequest(_id) {
     try {
       await axios.post(
-        `http://localhost:65400/request/review/accepted/${_id}`,
+        BASE_URL+`/request/review/accepted/${_id}`,
         {},
         { withCredentials: true },
       );
@@ -35,7 +36,7 @@ export default function Requests() {
     try {
       const { _id } = requests;
       await axios.post(
-        `http://localhost:65400/request/review/rejected/${_id}`,
+        BASE_URL+`/request/review/rejected/${_id}`,
         {},
         { withCredentials: true },
       );

@@ -4,6 +4,7 @@ import { addFeed } from "../utils/feedSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "./card";
+import { BASE_URL } from "../utils/constants";
 
 
 export default function Feed(){
@@ -15,7 +16,7 @@ export default function Feed(){
   const getFeed=async()=>{
     try{
       if(feed)return;
-      const res=await axios.get(`http://localhost:65400/feed?`,{withCredentials:true})
+      const res=await axios.get(BASE_URL+`/feed?`,{withCredentials:true})
       dispacth(addFeed(res.data))
       return res;
     }

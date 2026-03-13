@@ -6,6 +6,7 @@ import { useState } from "react";
 import Profile from "./profile";
 import Connections from "./connections";
 import Requests from "./requests";
+import { BASE_URL } from "../utils/constants";
 
 export default function Navbar(){
   const user=useSelector((store)=>store.user)
@@ -13,7 +14,7 @@ export default function Navbar(){
   const Navigate=useNavigate();
   const handleLogout=async()=>{
     try{
-       const res=await axios.post('http://localhost:65400/logout',{},{
+       const res=await axios.post(BASE_URL+'/logout',{},{
         withCredentials:true
        })
        dispatch(removeUser())

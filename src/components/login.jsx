@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/constants";
 
 export default function Login() {
   const [emailId, setEmailId] = useState("");
@@ -17,7 +18,7 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:65400/login",
+        BASE_URL+"/login",
         { emailId, password },
         { withCredentials: true },
       );
@@ -32,7 +33,7 @@ export default function Login() {
 
   const handleSignUp=async ()=>{
     try {
-       const res=await axios.post("http://localhost:65400/signup",{emailId,password,firstName,lastName},{withCredentials:true})
+       const res=await axios.post(BASE_URL+"/signup",{emailId,password,firstName,lastName},{withCredentials:true})
        dispatch(addUser(res.data))
        return navigate('/feed')
     } catch (error) {

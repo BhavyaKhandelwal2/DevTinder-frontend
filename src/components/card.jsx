@@ -1,6 +1,7 @@
 import axios from "axios";
-export default function Card({user,userNo,setUserNo}){
+import { BASE_URL } from "../utils/constants";
 
+export default function Card({user,userNo,setUserNo}){
   if(!user) return null;
 
   const {
@@ -12,7 +13,7 @@ export default function Card({user,userNo,setUserNo}){
 } = user;
    async function ignoreClick(){
     try {
-        const res=await axios.post(`http://localhost:65400/request/send/ignored/${_id}`,{},{withCredentials:true})
+        const res=await axios.post(BASE_URL+`/request/send/ignored/${_id}`,{},{withCredentials:true})
         setUserNo(userNo+1);
     } catch (error) {
         
